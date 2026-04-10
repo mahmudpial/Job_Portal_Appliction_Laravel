@@ -31,10 +31,10 @@ This application supports the full hiring flow:
 
 - Create and update employee profile (bio, skills, education, experience, resume, etc.).
 - Browse jobs with filters:
-  - Search (title/company)
-  - Location
-  - Job type
-  - Salary range
+    - Search (title/company)
+    - Location
+    - Job type
+    - Salary range
 - Apply to active jobs with cover letter and resume upload.
 - Prevent duplicate applications per job/user.
 - Track applications and statuses (`pending`, `reviewed`, `accepted`, `rejected`).
@@ -79,18 +79,18 @@ Policies and gates enforce access:
 ## Main Routes
 
 - Public:
-  - `GET /` landing page
-  - `GET /jobs` browse jobs
-  - `GET /jobs/{job}` view job details
+    - `GET /` landing page
+    - `GET /jobs` browse jobs
+    - `GET /jobs/{job}` view job details
 - Authenticated:
-  - `GET /dashboard`
-  - Company: `company.index`, `company.store`, `company.update`
-  - Employer Jobs: `jobs.index`, `jobs.create`, `jobs.store`, `jobs.edit`, `jobs.update`, `jobs.destroy`
-  - Employee Profile: `profile.employee`, `profile.employee.store`, `profile.employee.update`
-  - Applications: `job-applications.create`, `job-applications.store`, `job-applications.index`
+    - `GET /dashboard`
+    - Company: `company.index`, `company.store`, `company.update`
+    - Employer Jobs: `jobs.index`, `jobs.create`, `jobs.store`, `jobs.edit`, `jobs.update`, `jobs.destroy`
+    - Employee Profile: `profile.employee`, `profile.employee.store`, `profile.employee.update`
+    - Applications: `job-applications.create`, `job-applications.store`, `job-applications.index`
 - Admin:
-  - `admin.users`, `admin.companies`, `admin.jobs`, `admin.settings`
-  - Destroy routes for users/companies/jobs
+    - `admin.users`, `admin.companies`, `admin.jobs`, `admin.settings`
+    - Destroy routes for users/companies/jobs
 
 ## Installation and Setup
 
@@ -177,5 +177,6 @@ npm run build
 
 ## License
 
-This project is open-sourced under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 # Job_Portal_Appliction_Laravel

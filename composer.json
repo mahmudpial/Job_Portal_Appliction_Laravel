@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "pialmahmud/job-portal-application",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": [
@@ -8,6 +8,12 @@
         "framework"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "pial mahmud",
+            "email": "pialmahmud80@gmail.com"
+        }
+    ],
     "require": {
         "php": "^8.3",
         "laravel/framework": "^13.0",
