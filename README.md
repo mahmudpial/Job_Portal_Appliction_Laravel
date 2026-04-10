@@ -1,118 +1,74 @@
-# Job Portal Application
+<div align="center">
 
-A role-based job portal built with Laravel 13 where employers can post jobs, employees can apply, and admins can manage the platform.
+# 🏢 Job Portal Application
 
-## Project Description
+[![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?style=flat-square&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?style=flat-square&logo=php&logoColor=white)](https://php.net)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://mysql.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=flat-square)](LICENSE)
 
-This application supports the full hiring flow:
+A full-featured, role-based job portal where employers post jobs, employees apply, and admins manage the platform — built with Laravel 13.
 
-- Public users can browse and filter active jobs.
-- Employees can register, build profiles, upload resumes, and apply to jobs.
-- Employers can create company profiles, post jobs, and manage listings.
-- Admins can monitor users, companies, jobs, and system settings.
-- Email notifications are sent when job applications are submitted.
-- The UI has been modernized with responsive layouts and a blue-gradient visual theme.
+</div>
 
-## Core Features
+---
 
-### 1) Authentication and Roles
+## 📸 Screenshots
 
-- Laravel Breeze authentication (register, login, reset password, verify email).
-- Role-based users: `admin`, `employer`, `employee`.
-- Registration allows `employee` and `employer`; admin is seeded.
+> _Add screenshots below by uploading images to your repo and referencing them._
 
-### 2) Employer Module
+| Landing Page | Job Listings | Employer Dashboard |
+|---|---|---|
+| ![Landing](screenshots/landing.png) | ![Jobs](screenshots/jobs.png) | ![Dashboard](screenshots/dashboard.png) |
 
-- Create and update company profile (logo, description, industry, website, size, location).
-- Create, edit, close, and delete job postings.
-- View personal job dashboard and posting status.
+| Employee Profile | Admin Panel | Application Tracking |
+|---|---|---|
+| ![Profile](screenshots/profile.png) | ![Admin](screenshots/admin.png) | ![Applications](screenshots/applications.png) |
 
-### 3) Employee Module
+---
 
-- Create and update employee profile (bio, skills, education, experience, resume, etc.).
-- Browse jobs with filters:
-    - Search (title/company)
-    - Location
-    - Job type
-    - Salary range
-- Apply to active jobs with cover letter and resume upload.
-- Prevent duplicate applications per job/user.
-- Track applications and statuses (`pending`, `reviewed`, `accepted`, `rejected`).
+## ✨ Features
 
-### 4) Admin Module
+| Role | Capabilities |
+|---|---|
+| **Public** | Browse and filter active job listings |
+| **Employee** | Register, build profile, upload resume, apply to jobs, track application status |
+| **Employer** | Create company profile, manage job postings, view applicant dashboard |
+| **Admin** | Manage users, companies, and jobs; view system summary |
 
-- View paginated users, companies, and jobs.
-- Delete users, companies, and jobs.
-- View system summary/settings page.
+### Key Highlights
+- Laravel Breeze authentication (register, login, password reset, email verification)
+- Policy-based authorization for ownership control
+- Job filters: title, location, type, salary range
+- Duplicate application prevention
+- Email notifications to employers and applicants on new applications
 
-### 5) Notifications and Email
+---
 
-- Sends employer notification on new application.
-- Sends applicant confirmation email after submission.
-- Email templates are in `resources/views/emails`.
-
-## Tech Stack
+## 🛠 Tech Stack
 
 - **Backend:** Laravel 13, PHP 8.3
 - **Frontend:** Blade, Tailwind CSS, Alpine.js, Vite
-- **Database:** MySQL (default in `.env.example`)
-- **Auth Scaffolding:** Laravel Breeze
-- **Queue/Cache/Session:** database drivers configured by default
+- **Database:** MySQL
+- **Auth:** Laravel Breeze
+- **Queue / Cache / Session:** Database drivers
 
-## Data Model (High Level)
+---
 
-- `users` (includes `user_type`)
-- `companies` (belongs to user, employer profile)
-- `employee_profiles` (belongs to user, employee profile)
-- `job_postings` (belongs to company, mapped by `App\Models\Job`)
-- `job_applications` (belongs to job and user, unique pair on `job_id + user_id`)
+## ⚡ Quick Start
 
-## Authorization
-
-Policies and gates enforce access:
-
-- `JobPolicy` for employer ownership of jobs
-- `CompanyPolicy` for employer ownership of company profile
-- `EmployeeProfilePolicy` for employee ownership of profile
-- Gate `isAdmin` for admin-only routes
-
-## Main Routes
-
-- Public:
-    - `GET /` landing page
-    - `GET /jobs` browse jobs
-    - `GET /jobs/{job}` view job details
-- Authenticated:
-    - `GET /dashboard`
-    - Company: `company.index`, `company.store`, `company.update`
-    - Employer Jobs: `jobs.index`, `jobs.create`, `jobs.store`, `jobs.edit`, `jobs.update`, `jobs.destroy`
-    - Employee Profile: `profile.employee`, `profile.employee.store`, `profile.employee.update`
-    - Applications: `job-applications.create`, `job-applications.store`, `job-applications.index`
-- Admin:
-    - `admin.users`, `admin.companies`, `admin.jobs`, `admin.settings`
-    - Destroy routes for users/companies/jobs
-
-## Installation and Setup
-
-### Prerequisites
-
-- PHP `^8.3`
-- Composer
-- Node.js + npm
-- MySQL (or compatible DB configured in `.env`)
-
-### Quick Setup (recommended)
-
-```bash
+````bash
 composer run setup
 php artisan storage:link
 php artisan db:seed
 composer run dev
-```
+````
 
-### Manual Setup
+<details>
+<summary>Manual setup</summary>
 
-```bash
+````bash
 composer install
 cp .env.example .env
 php artisan key:generate
@@ -122,61 +78,74 @@ php artisan db:seed
 npm install
 npm run dev
 php artisan serve
-```
+````
 
-## Environment Notes
+</details>
 
-Update `.env` for:
+### Prerequisites
 
-- `DB_*` values (database connection)
-- `MAIL_*` values for real email delivery (default is `log`)
-- `APP_URL` for correct URL generation
+- PHP `^8.3`
+- Composer
+- Node.js + npm
+- MySQL
 
-## Seeded Accounts
+### Environment
 
-Default seeder creates:
+Update `.env` for your setup:
 
-- Admin: `admin@jobportal.com` / `password`
-- Test user: `test@example.com` (factory-based user)
+````env
+DB_DATABASE=your_db
+DB_USERNAME=your_user
+DB_PASSWORD=your_password
 
-## Useful Commands
+MAIL_MAILER=smtp        # Change from 'log' for real email delivery
+APP_URL=http://localhost
+````
 
-```bash
-# Run app services (server + queue listener + logs + vite)
-composer run dev
+---
 
-# Run tests
-composer test
+## 🔑 Demo Accounts
 
-# Build assets for production
-npm run build
-```
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@jobportal.com` | `password` |
+| Test User | `test@example.com` | `password` |
 
-## File Uploads
+---
 
-- Employer company logo: stored under `public` disk (`company-logos`)
-- Employee resume/profile and job application resume: stored under `public` disk (`resumes`)
-- Run `php artisan storage:link` so uploaded files are publicly accessible.
+## 📁 Project Structure
 
-## Project Structure (Key Parts)
+````
+app/
+├── Http/Controllers/   # Business logic by module
+├── Models/             # Eloquent models & relationships
+├── Policies/           # Role & ownership authorization
+└── Mail/               # Email notification classes
 
-- `app/Http/Controllers` business logic by module
-- `app/Models` Eloquent entities and relationships
-- `app/Policies` role/ownership authorization
-- `app/Mail` mail classes for application notifications
-- `resources/views` Blade templates (modernized UI)
-- `routes/web.php` main web routes
-- `database/migrations` schema definitions
+resources/views/        # Blade templates
+routes/web.php          # Web routes
+database/migrations/    # Schema definitions
+````
 
-## Current UI/UX Direction
+## 📂 File Uploads
 
-- Fully responsive Blade views
-- Shared modern component styling
-- Blue-gradient page backgrounds
-- Improved visual hierarchy for admin, jobs, company, profile, and application flows
+Uploaded files are stored on the `public` disk and publicly accessible via `storage:link`:
 
-## License
+- Company logos → `storage/app/public/company-logos/.`
+- Resumes → `storage/app/public/resumes/.`
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
 
-# Job_Portal_Appliction_Laravel
+## 🧪 Useful Commands
+
+````bash
+composer run dev    # Start server, queue, logs, and Vite
+composer test       # Run test suite
+npm run build       # Build assets for production
+````
+
+---
+
+## 📄 License
+
+Licensed under the [MIT License](LICENSE).
